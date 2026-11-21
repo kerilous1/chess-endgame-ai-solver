@@ -1,0 +1,38 @@
+name: chess_ai_solver
+description: >-
+  100% offline Pure Flutter/Dart 6x6 Chess Endgame AI Search Solver & Visualizer
+  featuring multi-endgame presets (KRK, KQK, KRRK, KRBK, Custom), plug-and-play
+  background Isolate search algorithms, Muted Dark Neon UI, full Arabic (RTL) /
+  English (LTR) localization, animated search explainers, live heuristic
+  telemetry, and benchmark dashboards.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State management (Feature-First Clean Architecture)
+  flutter_riverpod: ^2.6.1
+
+  # Typography: Cairo (Arabic RTL), Plus Jakarta Sans (English UI), JetBrains Mono (Telemetry)
+  google_fonts: ^6.2.1
+
+  # Custom SVG vector chess pieces and icons
+  flutter_svg: ^2.0.10+1
+
+  # Internationalization formatting and number/date utilities
+  intl: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
