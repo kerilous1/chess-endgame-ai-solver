@@ -74,9 +74,17 @@ void main() {
       final compareBtn = find.byKey(const ValueKey<String>('compare_all_btn'));
       await tester.ensureVisible(compareBtn);
       await tester.tap(compareBtn);
-      // Let background Isolate benchmark complete on Mate-in-2.
-      await tester.pump(const Duration(milliseconds: 450));
-      await tester.pump(const Duration(milliseconds: 450));
+
+      // Allow the real background Isolate.run benchmark to complete and settle.
+      for (var attempt = 0; attempt < 40; attempt++) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 50)),
+        );
+        await tester.pump(const Duration(milliseconds: 60));
+        if (find.byType(BenchmarkBarChart).evaluate().isNotEmpty) {
+          break;
+        }
+      }
 
       // Benchmark tab should now display results for every registered algorithm.
       expect(find.byType(BenchmarkDashboard), findsOneWidget);
